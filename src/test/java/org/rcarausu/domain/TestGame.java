@@ -3,6 +3,7 @@ package org.rcarausu.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.rcarausu.domain.Game.*;
 
 public class TestGame {
@@ -81,5 +82,28 @@ public class TestGame {
         assertEquals(RECEIVER_WON, game.getScore());
     }
 
+    @Test
+    public void serverShouldNotBeAbleToScore_whenGameIsFinished() {
+        // given
+        var game = Game.newGame();
+
+        // when
+        game.getServer().setPoints(17);
+        game.getReceiver().setPoints(15);
+
+        assertThrows(AssertionError.class, game::serverScores);
+    }
+
+    @Test
+    public void receiverShouldNotBeAbleToScore_whenGameIsFinished() {
+        // given
+        var game = Game.newGame();
+
+        // when
+        game.getServer().setPoints(17);
+        game.getReceiver().setPoints(15);
+
+        assertThrows(AssertionError.class, game::serverScores);
+    }
 
 }

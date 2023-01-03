@@ -6,6 +6,8 @@ import static org.rcarausu.domain.Game.Player.PlayerType.SERVER;
 
 public class Game {
 
+    private boolean finished = false;
+
     static class Player {
 
         public enum PlayerType {
@@ -69,10 +71,21 @@ public class Game {
     }
 
     public void serverScores() {
+        if (serverWon() || receiverWon()) {
+            finished = true;
+        }
+
+        assert !finished;
         this.server.score();
     }
 
     public void receiverScores() {
+        if (serverWon() || receiverWon()) {
+            finished = true;
+        }
+
+        assert !finished;
+
         this.receiver.score();
     }
 
