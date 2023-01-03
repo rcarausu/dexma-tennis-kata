@@ -13,19 +13,19 @@ public class TestGame {
         var game = Game.newGame();
 
         // when
-        game.getServer().score();
+        game.serverScores();
 
         assertEquals("15:0", game.getScore());
 
         game.getServer().setPoints(1);
         game.getReceiver().setPoints(1);
-        game.getReceiver().score();
+        game.receiverScores();
 
         assertEquals("15:30", game.getScore());
 
         game.getServer().setPoints(2);
         game.getReceiver().setPoints(2);
-        game.getReceiver().score();
+        game.receiverScores();
 
         assertEquals("30:40", game.getScore());
     }
@@ -38,12 +38,12 @@ public class TestGame {
         // when
         game.getServer().setPoints(3);
         game.getReceiver().setPoints(2);
-        game.getReceiver().score();
+        game.receiverScores();
         assertEquals(DEUCE, game.getScore());
 
         game.getServer().setPoints(8);
         game.getReceiver().setPoints(9);
-        game.getServer().score();
+        game.serverScores();
         assertEquals(DEUCE, game.getScore());
     }
 
@@ -55,12 +55,12 @@ public class TestGame {
         // when
         game.getServer().setPoints(3);
         game.getReceiver().setPoints(3);
-        game.getServer().score();
+        game.serverScores();
         assertEquals(SERVER_ADVANTAGE, game.getScore());
 
         game.getServer().setPoints(10);
         game.getReceiver().setPoints(10);
-        game.getReceiver().score();
+        game.receiverScores();
         assertEquals(RECEIVER_ADVANTAGE, game.getScore());
     }
 
@@ -72,12 +72,12 @@ public class TestGame {
         // when
         game.getServer().setPoints(16);
         game.getReceiver().setPoints(15);
-        game.getServer().score();
+        game.serverScores();
         assertEquals(SERVER_WON, game.getScore());
 
         game.getServer().setPoints(2);
         game.getReceiver().setPoints(3);
-        game.getReceiver().score();
+        game.receiverScores();
         assertEquals(RECEIVER_WON, game.getScore());
     }
 

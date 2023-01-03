@@ -1,10 +1,45 @@
 package org.rcarausu.domain;
 
 import static java.lang.String.format;
-import static org.rcarausu.domain.Player.PlayerType.RECEIVER;
-import static org.rcarausu.domain.Player.PlayerType.SERVER;
+import static org.rcarausu.domain.Game.Player.PlayerType.RECEIVER;
+import static org.rcarausu.domain.Game.Player.PlayerType.SERVER;
 
 public class Game {
+
+    static class Player {
+
+        public enum PlayerType {
+            SERVER, RECEIVER
+        }
+
+        private int points = 0;
+
+        private final PlayerType playerType;
+
+        public Player(PlayerType playerType) {
+            this.playerType = playerType;
+        }
+
+        public int getPoints() {
+            return this.points;
+        }
+
+        // helper method for tests, maybe there is a better way of doing this
+        public void setPoints(int points) {
+            assert points >= 0;
+
+            this.points = points;
+        }
+
+        public PlayerType getPlayerType() {
+            return this.playerType;
+        }
+
+        private void score() {
+            this.points += 1;
+        }
+
+    }
 
     public static final String DEUCE = "40:40";
     public static final String SERVER_ADVANTAGE = "A:40";
@@ -31,6 +66,14 @@ public class Game {
 
     public Player getReceiver() {
         return this.receiver;
+    }
+
+    public void serverScores() {
+        this.server.score();
+    }
+
+    public void receiverScores() {
+        this.receiver.score();
     }
 
     private boolean scoreIsDeuce() {
