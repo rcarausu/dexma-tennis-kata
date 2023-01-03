@@ -1,8 +1,8 @@
-package org.rcarausu.domain;
+package com.rcarausu.domain;
 
 import static java.lang.String.format;
-import static org.rcarausu.domain.Game.Player.PlayerType.RECEIVER;
-import static org.rcarausu.domain.Game.Player.PlayerType.SERVER;
+import static com.rcarausu.domain.Game.Player.PlayerType.RECEIVER;
+import static com.rcarausu.domain.Game.Player.PlayerType.SERVER;
 
 public class Game {
 
